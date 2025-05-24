@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: python-script-bot
+    runtime: python
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: |
+      gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: TELEGRAM_TOKEN
+        value: "7880094170:AAHY5Tr8hVWWcg9OyFopdS85Hm-IhEilNp0-_s"
+      - key: ADMINS
+        value: "1549831164"
+    plan: free
